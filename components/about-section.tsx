@@ -160,16 +160,26 @@ export function AboutSection() {
                         key={badge.label}
                         className="absolute"
                         style={{
-                          transform: `rotate(${angle}deg) translate(160px) rotate(-${angle}deg)`,
+                          transform: `rotate(${angle}deg) translate(160px)`,
                         }}
                       >
-                        <div className="px-2 sm:px-3 py-1 sm:py-1.5 bg-card border border-border rounded-lg shadow-lg backdrop-blur-sm whitespace-nowrap">
-                          <span
-                            className={`text-[10px] sm:text-xs font-medium ${badge.color}`}
-                          >
-                            {badge.label}
-                          </span>
-                        </div>
+                        <motion.div
+                          style={{ rotate: -angle }}
+                          animate={{ rotate: -angle - 360 }}
+                          transition={{
+                            duration: 40,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
+                        >
+                          <div className="px-2 sm:px-3 py-1 sm:py-1.5 bg-card border border-border rounded-lg shadow-lg backdrop-blur-sm whitespace-nowrap">
+                            <span
+                              className={`text-[10px] sm:text-xs font-medium ${badge.color}`}
+                            >
+                              {badge.label}
+                            </span>
+                          </div>
+                        </motion.div>
                       </div>
                     );
                   })}
